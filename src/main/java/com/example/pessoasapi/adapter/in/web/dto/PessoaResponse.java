@@ -1,6 +1,6 @@
-package com.example.pessoasapi.dto;
+package com.example.pessoasapi.adapter.in.web.dto;
 
-import com.example.pessoasapi.model.Pessoa;
+import com.example.pessoasapi.domain.model.Pessoa;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;

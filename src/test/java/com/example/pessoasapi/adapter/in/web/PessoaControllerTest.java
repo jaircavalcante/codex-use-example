@@ -1,12 +1,12 @@
-package com.example.pessoasapi.controller;
+package com.example.pessoasapi.adapter.in.web;
 
+import com.example.pessoasapi.adapter.out.persistence.PessoaEmMemoriaRepository;
+import com.example.pessoasapi.application.usecase.CadastrarPessoaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-
-import com.example.pessoasapi.repository.PessoaRepository;
 
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -16,8 +16,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class PessoaControllerTest {
 
+    private static final PessoaEmMemoriaRepository PESSOA_REPOSITORY = new PessoaEmMemoriaRepository();
+
     private final MockMvc mockMvc = MockMvcBuilders
-            .standaloneSetup(new PessoaController(new PessoaRepository()))
+            .standaloneSetup(new PessoaController(new CadastrarPessoaService(PESSOA_REPOSITORY, PESSOA_REPOSITORY)))
+            .setControllerAdvice(new RestExceptionHandler())
             .setValidator(validator())
             .build();
 

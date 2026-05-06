@@ -1,4 +1,4 @@
-package com.example.pessoasapi.model;
+package com.example.pessoasapi.domain.model;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
