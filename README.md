@@ -43,6 +43,20 @@ O projeto segue arquitetura hexagonal:
 - `adapter/out/persistence`: adaptador de persistencia em memoria.
 - `adapter/config`: composicao dos beans Spring.
 
+## Fluxo do workflow
+
+```mermaid
+flowchart TD
+    A["Push em branch de feature"] --> B["GitHub Actions inicia"]
+    B --> C["Configura Java 21"]
+    C --> D["Executa mvn -B clean verify"]
+    D --> E{"Build com sucesso?"}
+    E -- "Nao" --> F["Workflow falha"]
+    E -- "Sim" --> G{"Ja existe PR para a branch?"}
+    G -- "Sim" --> H["Mantem PR existente"]
+    G -- "Nao" --> I["Abre pull request para main"]
+```
+
 ## Executar
 
 ```bash
